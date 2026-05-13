@@ -6,7 +6,62 @@
   <title>GasDrive V7</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#00D9FF">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0a0a0a;color:#fff;font-family:'Segoe UI',sans-serif;padding-bottom:70px}
+    .header{background:linear-gradient(135deg,#00D9FF,#0077FF);padding:20px;text-align:center;box-shadow:0 4px 20px rgba(0,217,255,0.3)}
+    h1{font-size:28px;font-weight:900;letter-spacing:2px}
+    .subtitle{font-size:12px;opacity:0.9;margin-top:4px}
+    .coins{display:inline-block;background:#FFD700;color:#000;padding:4px 12px;border-radius:20px;font-weight:900;margin-left:10px}
+    .tabs{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #222;display:flex;z-index:100}
+    .tab-btn{flex:1;padding:12px 4px;background:none;border:none;color:#666;font-size:11px;cursor:pointer;transition:0.2s}
+    .tab-btn.active{color:#00D9FF;background:#1a1a1a}
+    .tab-btn .emoji{font-size:20px;display:block;margin-bottom:4px}
+    .tab-content{display:none;padding:15px;animation:fadeIn 0.3s}
+    .tab-content.active{display:block}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .sub-tabs{display:flex;gap:8px;margin-bottom:15px;overflow-x:auto;padding-bottom:5px}
+    .sub-tab-btn{background:#222;border:1px solid #333;color:#999;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;white-space:nowrap;transition:0.2s}
+    .sub-tab-btn.active{background:#00D9FF;color:#000;border-color:#00D9FF;font-weight:700}
+    .sub-content{display:none}
+    .sub-content.active{display:block;animation:fadeIn 0.3s}
+    .card{background:#151515;border:1px solid #222;border-radius:12px;padding:16px;margin-bottom:15px}
+    .card h2{color:#00D9FF;font-size:18px;margin-bottom:12px}
+    .pregunta{font-size:17px;margin:15px 0;line-height:1.4}
+    .opcion{background:#222;border:2px solid #333;padding:14px 50px 14px 14px;margin:10px 0;border-radius:10px;cursor:pointer;transition:0.2s;font-size:15px;position:relative}
+    .opcion:hover{background:#2a2a2a;border-color:#00D9FF}
+    .opcion.correcta{background:#0a4!important;border-color:#0f5!important;animation:pulse 0.5s}
+    .opcion.incorrecta{background:#a00!important;border-color:#f00!important;animation:shake 0.5s}
+    .opcion.bloqueada{pointer-events:none}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+    .btn-sig{background:linear-gradient(135deg,#00D9FF,#0077FF);color:#fff;border:none;padding:16px;width:100%;font-size:16px;font-weight:700;margin-top:12px;border-radius:10px;cursor:pointer}
+    .btn-sig:disabled{background:#333;color:#666;cursor:not-allowed}
+    .stats{display:flex;justify-content:space-between;background:#0f0f0f;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
+    .stats span{color:#00D9FF;font-weight:700}
+    .feedback{text-align:center;font-size:20px;font-weight:900;margin:15px 0;padding:12px;border-radius:10px;animation:bounceIn 0.5s}
+    .feedback.acierto{background:#0a4;color:#fff}
+    .feedback.fallo{background:#a00;color:#fff}
+    @keyframes bounceIn{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+    .garage-car{background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:20px;text-align:center;margin:10px 0}
+    .garage-car.locked{opacity:0.4}
+    .garage-car h3{color:#00D9FF;margin:8px 0}
+    .garage-car .price{color:#FFD700;font-weight:900;font-size:18px}
+    .btn-buy{background:#FFD700;color:#000;border:none;padding:12px 24px;border-radius:8px;font-weight:900;cursor:pointer;margin-top:10px}
+    .btn-buy:disabled{background:#333;color:#666;cursor:not-allowed}
+    .accessory{background:#222;border:1px solid #333;padding:12px;border-radius:8px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+    .accessory.equipped{border-color:#0f5;background:#0a2}
+    .tip{background:#1a1a1a;border-left:4px solid #00D9FF;padding:14px;margin:10px 0;border-radius:6px;display:flex;align-items:center}
+    .tip .tip-emoji{font-size:24px;margin-right:12px}
+    .score-big{text-align:center;font-size:48px;font-weight:900;color:#00D9FF;margin:20px 0;text-shadow:0 0 20px rgba(0,217,255,0.5)}
+    .emoji-shop{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .emoji-item{background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:15px;text-align:center;cursor:pointer}
+    .emoji-item.owned{border-color:#0f5;background:#0a2}
+    .emoji-item.locked{opacity:0.4}
+    .emoji-item .emoji-big{font-size:40px;margin:5px 0}
+    .progress-bar{background:#222;height:8px;border-radius:4px;margin:8px 0;overflow:hidden}
+    .progress-fill{background:linear-gradient(90deg,#00D9FF,#0f5);height:100%;transition:width 0.3s}
+  </style>
 </head>
 <body>
   <div class="header">
@@ -17,12 +72,12 @@
   <!-- TEST -->
   <div id="tab-test" class="tab-content active">
     <div class="sub-tabs">
-      <button class="subtab-btn active" onclick="cambiarSubTab('test','general')">📝 General</button>
-      <button class="subtab-btn" onclick="cambiarSubTab('test','señales')">🚸 Señales</button>
-      <button class="subtab-btn" onclick="cambiarSubTab('test','normas')">📋 Normas</button>
-      <button class="subtab-btn" onclick="cambiarSubTab('test','mecanica')">🔧 Mecánica</button>
+      <button class="sub-tab-btn active" onclick="cambiarSubTab('test','general')">📝 General</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('test','señales')">🚸 Señales</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('test','normas')">📋 Normas</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('test','mecanica')">🔧 Mecánica</button>
     </div>
-
+    
     <div id="test-general" class="sub-content active">
       <div class="card">
         <h2>📝 TEST GENERAL</h2>
@@ -91,11 +146,12 @@
   <!-- SITUACIONES -->
   <div id="tab-situaciones" class="tab-content">
     <div class="sub-tabs">
-      <button class="subtab-btn active" onclick="cambiarSubTab('sit','clima')">🌧️ Clima</button>
-      <button class="subtab-btn" onclick="cambiarSubTab('sit','ciudad')">🏙️ Ciudad</button>
-      <button class="subtab-btn" onclick="cambiarSubTab('sit','carretera')">🛣️ Carretera</button>
-      <button class="subtab-btn" onclick="cambiarSubTab('sit','emergencia')">🚨 Emergencia</button>
+      <button class="sub-tab-btn active" onclick="cambiarSubTab('sit','clima')">🌧️ Clima</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','ciudad')">🏙️ Ciudad</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','carretera')">🛣️ Carretera</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','emergencia')">🚨 Emergencia</button>
     </div>
+
     <div id="sit-clima" class="sub-content active">
       <div class="card">
         <h2>🌧️ CLIMA ADVERSO</h2>
@@ -110,6 +166,7 @@
         <button class="btn-sig" id="btn-sig-sit-clima" onclick="siguienteSituacion('clima')" disabled>SIGUIENTE</button>
       </div>
     </div>
+
     <div id="sit-ciudad" class="sub-content">
       <div class="card">
         <h2>🏙️ CONDUCCIÓN URBANA</h2>
@@ -124,6 +181,7 @@
         <button class="btn-sig" id="btn-sig-sit-ciudad" onclick="siguienteSituacion('ciudad')" disabled>SIGUIENTE</button>
       </div>
     </div>
+
     <div id="sit-carretera" class="sub-content">
       <div class="card">
         <h2>🛣️ AUTOVÍA/CARRETERA</h2>
@@ -138,6 +196,7 @@
         <button class="btn-sig" id="btn-sig-sit-carretera" onclick="siguienteSituacion('carretera')" disabled>SIGUIENTE</button>
       </div>
     </div>
+
     <div id="sit-emergencia" class="sub-content">
       <div class="card">
         <h2>🚨 EMERGENCIAS</h2>
@@ -160,7 +219,9 @@
       <h2>🏁 MI GARAGE</h2>
       <div class="score-big" id="garage-score">🏎️ 0 HP</div>
       <div id="garage-lista"></div>
-      <h3 style="margin-top:20px;color:#00D9FF">ACCESORIOS</h3>
+    </div>
+    <div class="card">
+      <h2>🔧 ACCESORIOS</h2>
       <div id="accesorios-lista"></div>
     </div>
   </div>
@@ -168,15 +229,16 @@
   <!-- TIENDA -->
   <div id="tab-tienda" class="tab-content">
     <div class="card">
-      <h2>🛒 TIENDA</h2>
-      <div id="tienda-lista" class="emoji-shop"></div>
+      <h2>🛒 TIENDA EMOJIS</h2>
+      <p style="margin-bottom:12px;font-size:13px;color:#999">Canjea tus puntos por supercoches emoji exclusivos</p>
+      <div class="emoji-shop" id="emoji-tienda"></div>
     </div>
   </div>
 
   <!-- TIPS -->
   <div id="tab-tips" class="tab-content">
     <div class="card">
-      <h2>💡 TIPS RÁPIDOS</h2>
+      <h2>💡 CONSEJOS BÁSICOS</h2>
       <div id="tips-lista"></div>
     </div>
   </div>
@@ -187,7 +249,7 @@
       <span class="emoji">📝</span>TEST
     </button>
     <button class="tab-btn" onclick="cambiarTab('situaciones')">
-      <span class="emoji">🚗</span>CASOS
+      <span class="emoji">🚦</span>CASOS
     </button>
     <button class="tab-btn" onclick="cambiarTab('garage')">
       <span class="emoji">🏁</span>GARAGE
@@ -200,6 +262,6 @@
     </button>
   </div>
 
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
-</html> 
+</html>
