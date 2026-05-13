@@ -17,10 +17,10 @@
   <!-- TEST -->
   <div id="tab-test" class="tab-content active">
     <div class="sub-tabs">
-      <button class="sub-tab-btn active" onclick="cambiarSubTab('test','general',this)">📝 General</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('test','señales',this)">🚸 Señales</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('test','normas',this)">📋 Normas</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('test','mecanica',this)">🔧 Mecánica</button>
+      <button class="subtab-btn active" data-subtab="general">📝 General</button>
+      <button class="subtab-btn" data-subtab="señales">🚸 Señales</button>
+      <button class="subtab-btn" data-subtab="normas">📋 Normas</button>
+      <button class="subtab-btn" data-subtab="mecanica">🔧 Mecánica</button>
     </div>
     
     <div id="test-general" class="sub-content active">
@@ -35,7 +35,7 @@
         <div class="pregunta" id="test-general-pregunta"></div>
         <div id="test-general-opciones"></div>
         <div class="feedback" id="test-general-feedback"></div>
-        <button class="btn-sig" id="btn-sig-test-general" onclick="siguienteTest('general')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-test-general" disabled>SIGUIENTE</button>
       </div>
     </div>
 
@@ -51,7 +51,7 @@
         <div class="pregunta" id="test-señales-pregunta"></div>
         <div id="test-señales-opciones"></div>
         <div class="feedback" id="test-señales-feedback"></div>
-        <button class="btn-sig" id="btn-sig-test-señales" onclick="siguienteTest('señales')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-test-señales" disabled>SIGUIENTE</button>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
         <div class="pregunta" id="test-normas-pregunta"></div>
         <div id="test-normas-opciones"></div>
         <div class="feedback" id="test-normas-feedback"></div>
-        <button class="btn-sig" id="btn-sig-test-normas" onclick="siguienteTest('normas')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-test-normas" disabled>SIGUIENTE</button>
       </div>
     </div>
 
@@ -83,7 +83,7 @@
         <div class="pregunta" id="test-mecanica-pregunta"></div>
         <div id="test-mecanica-opciones"></div>
         <div class="feedback" id="test-mecanica-feedback"></div>
-        <button class="btn-sig" id="btn-sig-test-mecanica" onclick="siguienteTest('mecanica')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-test-mecanica" disabled>SIGUIENTE</button>
       </div>
     </div>
   </div>
@@ -91,10 +91,10 @@
   <!-- SITUACIONES -->
   <div id="tab-situaciones" class="tab-content">
     <div class="sub-tabs">
-      <button class="sub-tab-btn active" onclick="cambiarSubTab('sit','clima',this)">🌧️ Clima</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','ciudad',this)">🏙️ Ciudad</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','carretera',this)">🛣️ Carretera</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','emergencia',this)">🚨 Emergencia</button>
+      <button class="subtab-btn active" data-subtab="clima">🌧️ Clima</button>
+      <button class="subtab-btn" data-subtab="ciudad">🏙️ Ciudad</button>
+      <button class="subtab-btn" data-subtab="carretera">🛣️ Carretera</button>
+      <button class="subtab-btn" data-subtab="emergencia">🚨 Emergencia</button>
     </div>
     <div id="sit-clima" class="sub-content active">
       <div class="card">
@@ -107,7 +107,7 @@
         <div class="pregunta" id="sit-clima-pregunta"></div>
         <div id="sit-clima-opciones"></div>
         <div class="feedback" id="sit-clima-feedback"></div>
-        <button class="btn-sig" id="btn-sig-sit-clima" onclick="siguienteSituacion('clima')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-sit-clima" disabled>SIGUIENTE</button>
       </div>
     </div>
     <div id="sit-ciudad" class="sub-content">
@@ -121,7 +121,7 @@
         <div class="pregunta" id="sit-ciudad-pregunta"></div>
         <div id="sit-ciudad-opciones"></div>
         <div class="feedback" id="sit-ciudad-feedback"></div>
-        <button class="btn-sig" id="btn-sig-sit-ciudad" onclick="siguienteSituacion('ciudad')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-sit-ciudad" disabled>SIGUIENTE</button>
       </div>
     </div>
     <div id="sit-carretera" class="sub-content">
@@ -135,7 +135,7 @@
         <div class="pregunta" id="sit-carretera-pregunta"></div>
         <div id="sit-carretera-opciones"></div>
         <div class="feedback" id="sit-carretera-feedback"></div>
-        <button class="btn-sig" id="btn-sig-sit-carretera" onclick="siguienteSituacion('carretera')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-sit-carretera" disabled>SIGUIENTE</button>
       </div>
     </div>
     <div id="sit-emergencia" class="sub-content">
@@ -149,7 +149,7 @@
         <div class="pregunta" id="sit-emergencia-pregunta"></div>
         <div id="sit-emergencia-opciones"></div>
         <div class="feedback" id="sit-emergencia-feedback"></div>
-        <button class="btn-sig" id="btn-sig-sit-emergencia" onclick="siguienteSituacion('emergencia')" disabled>SIGUIENTE</button>
+        <button class="btn-sig" id="btn-sig-sit-emergencia" disabled>SIGUIENTE</button>
       </div>
     </div>
   </div>
@@ -183,19 +183,19 @@
 
   <!-- MENÚ INFERIOR -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="cambiarTab('test',this)">
+    <button class="tab-btn active" data-tab="test">
       <span class="emoji">📝</span>TEST
     </button>
-    <button class="tab-btn" onclick="cambiarTab('situaciones',this)">
+    <button class="tab-btn" data-tab="situaciones">
       <span class="emoji">🚗</span>CASOS
     </button>
-    <button class="tab-btn" onclick="cambiarTab('garage',this)">
+    <button class="tab-btn" data-tab="garage">
       <span class="emoji">🏁</span>GARAGE
     </button>
-    <button class="tab-btn" onclick="cambiarTab('tienda',this)">
+    <button class="tab-btn" data-tab="tienda">
       <span class="emoji">🛒</span>TIENDA
     </button>
-    <button class="tab-btn" onclick="cambiarTab('tips',this)">
+    <button class="tab-btn" data-tab="tips">
       <span class="emoji">💡</span>TIPS
     </button>
   </div>
