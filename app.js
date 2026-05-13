@@ -195,4 +195,4 @@ const SITUACIONES = {
     {q:"Accidente con heridos:",a:["Muevo heridos","PAS: Proteger, Avisar, Socorrer","Me voy"],ok:1},
     {q:"Fallo frenos:",a:["Freno motor y freno mano","Acelerar","Ignorar"],ok:0},
     {q:"Incendio motor:",a:["Abrir capó","No abrir, extintor","Echar agua"],ok:1},
-    {q:"Pérdida de dirección:",a:["Frenar fuerte","Sujetar volante y
+    {q:"Pérdida de dirección:",a:["Frenar fuerte","Sujetar volante y frenar suave","Acelerar"],
