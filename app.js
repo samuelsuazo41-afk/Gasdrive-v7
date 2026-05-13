@@ -1,9 +1,9 @@
 // GASDRIVE V7 - 140 PREGUNTAS DGT 2026
 const VERSION = "7.0";
 
-// COMBO DOPAMINA COMPLETO
-const EMOJIS_ACIERTO = ['🚀','💎','👑','🔥','💯','⚡','🏆','🦄','🤑','✅','💪','😎','🎯','💥','🌟','🎉','🎊','💣','🔥','💀'];
-const EMOJIS_FALLO = ['❌','💀','😭','⛔','💔','😵','🤦','🚫','💩','🤡','💥','😤','☠️','🤯','😱'];
+// COMBO DOPAMINA
+const EMOJIS_ACIERTO = ['🚀','💎','👑','🔥','💯','⚡','🏆','🦄','🤑','✅','💪','😎','🎯','💥','🌟','🎉','🎊','💣'];
+const EMOJIS_FALLO = ['❌','💀','😭','⛔','💔','😵','🤦','🚫','💩','🤡','💥','😤','☠️','🤯'];
 
 const PREGUNTAS = {
   general: [
@@ -257,33 +257,22 @@ let estado = {
   }
 };
 
-// INICIO AUTOMÁTICO
+// INICIO AUTOMÁTICO - ESTO ES LO QUE HACÍA FUNCIONAR V5
 window.onload = function() {
   actualizarCoins();
   cargarPregunta('general');
 };
 
-// FUNCIONES DE NAVEGACIÓN
-function cambiarTab(tab) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-  event.target.classList.add('active');
-  if(tab === 'garage') cargarGarage();
-  if(tab === 'tienda') cargarTienda();
-  if(tab === 'tips') cargarTips();
-  if(tab === 'test') cargarPregunta('general');
-  if(tab === 'situaciones') cargarSituacion('clima');
+// GUARDAR Y COINS
+function guardar() {
+  localStorage.setItem('gd_coins', estado.coins);
+  localStorage.setItem('gd_coches', JSON.stringify(estado.coches));
+  localStorage.setItem('gd_accesorios', JSON.stringify(estado.accesorios));
+  localStorage.setItem('gd_emojis', JSON.stringify(estado.emojis));
 }
 
-function cambiarSubTab(tab, subtab) {
-  const contenedor = document.getElementById('tab-' + tab);
-  contenedor.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
-  contenedor.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById(`${tab === 'test'?'test':'sit'}-${subtab}`).classList.add('active');
-  if(tab === 'test') cargarPregunta(subtab);
-  if(tab === 'sit') cargarSituacion(subtab);
+function actualizarCoins() {
+  document.getElementById('coins').textContent = `💰 ${estado.coins}`;
 }
 
 // DOPAMINA SYSTEM
@@ -293,14 +282,39 @@ function mostrarEmoji(acierto, elemento) {
   const span = document.createElement('span');
   span.className = 'emoji-feedback';
   span.textContent = emoji;
-  span.style.cssText = 'position:absolute;font-size:2.5rem;animation:pop 0.7s forwards;pointer-events:none;z-index:999;';
+  span.style.cssText = 'position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:32px;animation:bounceIn 0.4s;filter:drop-shadow(0 0 8px rgba(255,255,255,0.5));pointer-events:none;z-index:999;';
   elemento.style.position = 'relative';
   elemento.appendChild(span);
-  setTimeout(() => span.remove(), 700);
+  setTimeout(() => span.remove(), 600);
   if(navigator.vibrate) navigator.vibrate(acierto? [30,20,30] : [100,50,100]);
 }
 
-// LÓGICA DE TEST
+// NAVEGACIÓN - SIN EVENT GLOBAL
+function cambiarTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.querySelector(`.tab-btn[onclick*="${tab}"]`).classList.add('active');
+
+  if(tab === 'garage') cargarGarage();
+  if(tab === 'tienda') cargarTienda();
+  if(tab === 'tips') cargarTips();
+  if(tab === 'test') cargarPregunta('general');
+  if(tab === 'situaciones') cargarSituacion('clima');
+}
+
+function cambiarSubTab(tab, subtab) {
+  const contenedor = document.getElementById('tab-' + tab);
+  contenedor.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+  contenedor.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
+  document.querySelector(`.sub-tab-btn[onclick*="${subtab}"]`).classList.add('active');
+  document.getElementById(`${tab === 'test'?'test':'sit'}-${subtab}`).classList.add('active');
+
+  if(tab === 'test') cargarPregunta(subtab);
+  if(tab === 'sit') cargarSituacion(subtab);
+}
+
+// TEST
 function cargarPregunta(cat) {
   const s = estado.test[cat];
   const p = PREGUNTAS[cat][s.idx];
@@ -310,10 +324,12 @@ function cargarPregunta(cat) {
   document.getElementById(`test-${cat}-racha`).textContent = s.racha;
   document.getElementById(`test-${cat}-score`).textContent = s.score;
   document.getElementById(`test-${cat}-progress`).style.width = `${(s.idx/PREGUNTAS[cat].length)*100}%`;
+
   const cont = document.getElementById(`test-${cat}-opciones`);
   cont.innerHTML = '';
   document.getElementById(`test-${cat}-feedback`).textContent = '';
   document.getElementById(`btn-sig-test-${cat}`).disabled = true;
+
   p.a.forEach((txt, i) => {
     const div = document.createElement('div');
     div.className = 'opcion';
@@ -327,8 +343,10 @@ function responderTest(cat, idx, el) {
   const s = estado.test[cat];
   const p = PREGUNTAS[cat][s.idx];
   if(el.classList.contains('bloqueada')) return;
+
   document.querySelectorAll(`#test-${cat}-opciones.opcion`).forEach(o => o.classList.add('bloqueada'));
   const correcta = idx === p.ok;
+
   if(correcta) {
     el.classList.add('correcta');
     s.aciertos++;
@@ -346,6 +364,7 @@ function responderTest(cat, idx, el) {
     document.getElementById(`test-${cat}-feedback`).textContent = '❌ FALLO';
     mostrarEmoji(false, el);
   }
+
   document.getElementById(`btn-sig-test-${cat}`).disabled = false;
   actualizarCoins();
   guardar();
@@ -363,7 +382,7 @@ function siguienteTest(cat) {
   cargarPregunta(cat);
 }
 
-// LÓGICA DE SITUACIONES
+// SITUACIONES
 function cargarSituacion(cat) {
   const s = estado.sit[cat];
   const p = SITUACIONES[cat][s.idx];
@@ -372,10 +391,12 @@ function cargarSituacion(cat) {
   document.getElementById(`sit-${cat}-aciertos`).textContent = s.aciertos;
   document.getElementById(`sit-${cat}-score`).textContent = s.score;
   document.getElementById(`sit-${cat}-progress`).style.width = `${(s.idx/SITUACIONES[cat].length)*100}%`;
+
   const cont = document.getElementById(`sit-${cat}-opciones`);
   cont.innerHTML = '';
   document.getElementById(`sit-${cat}-feedback`).textContent = '';
   document.getElementById(`btn-sig-sit-${cat}`).disabled = true;
+
   p.a.forEach((txt, i) => {
     const div = document.createElement('div');
     div.className = 'opcion';
@@ -389,8 +410,10 @@ function responderSituacion(cat, idx, el) {
   const s = estado.sit[cat];
   const p = SITUACIONES[cat][s.idx];
   if(el.classList.contains('bloqueada')) return;
+
   document.querySelectorAll(`#sit-${cat}-opciones.opcion`).forEach(o => o.classList.add('bloqueada'));
   const correcta = idx === p.ok;
+
   if(correcta) {
     el.classList.add('correcta');
     s.aciertos++;
@@ -401,26 +424,4 @@ function responderSituacion(cat, idx, el) {
     mostrarEmoji(true, el);
   } else {
     el.classList.add('incorrecta');
-    document.querySelectorAll(`#sit-${cat}-opciones.opcion`)[p.ok].classList.add('correcta');
-    document.getElementById(`sit-${cat}-feedback`).className = 'feedback fallo';
-    document.getElementById(`sit-${cat}-feedback`).textContent = '❌ PELIGRO';
-    mostrarEmoji(false, el);
-  }
-  document.getElementById(`btn-sig-sit-${cat}`).disabled = false;
-  actualizarCoins();
-  guardar();
-}
-
-function siguienteSituacion(cat) {
-  const s = estado.sit[cat];
-  s.idx++;
-  if(s.idx >= SITUACIONES[cat].length) {
-    s.idx = 0;
-    alert(`🎉 CASOS ${cat.toUpperCase()} COMPLETADOS!`);
-    s.aciertos = 0;
-  }
-  cargarSituacion(cat);
-}
-
-// GARAGE
-function cargarGar
+    document.querySelectorAll(`#sit-${cat}-opciones.opcion`
