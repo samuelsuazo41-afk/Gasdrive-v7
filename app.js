@@ -413,16 +413,4 @@ function responderSituacion(cat, idx, el) {
   guardar();
 }
 
-function siguienteSituacion(cat) {
-  const s = estado.sit[cat];
-  s.idx++;
-  if(s.idx >= SITUACIONES[cat].length) {
-    s.idx = 0;
-    alert(`🎉 CASOS ${cat.toUpperCase()} COMPLETADOS!`);
-    s.aciertos = 0;
-  }
-  cargarSituacion(cat);
-}
-
-function cargarGarage() {
-  let hp = 0;
+function
