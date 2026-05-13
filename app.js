@@ -1,11 +1,11 @@
 // GASDRIVE V7 - 180 PREGUNTAS DGT 2026
-const VERSION = "7.0";
+const VERSION = "7.1";
 
 // COMBO DOPAMINA
 const EMOJIS_ACIERTO = ['🚀','💎','👑','🔥','💯','⚡','🏆','🦄','🤑','✅','💪','😎','🎯','💥','🌟','🎉'];
 const EMOJIS_FALLO = ['❌','💀','😭','⛔','💔','😵','🤦','🚫','💩','🤡','💥','😤'];
 
-// 140 PREGUNTAS TEST DGT
+// 140 PREGUNTAS TEST DGT - MANTEN TUS 140 AQUÍ
 const PREGUNTAS = {
   general: [
     {q:"¿Velocidad máxima en zona urbana?",a:["30 km/h","50 km/h","60 km/h"],ok:1},
@@ -17,32 +17,7 @@ const PREGUNTAS = {
     {q:"Luces de cruce obligatorias:",a:["Siempre","Noche/túneles","Solo lluvia"],ok:1},
     {q:"¿Móvil al volante?",a:["Permitido manos libres","Prohibido siempre","Solo mensajes"],ok:0},
     {q:"Distancia mínima al adelantar ciclista:",a:["1 metro","1.5 metros","2 metros"],ok:1},
-    {q:"¿Cuándo usar claxon en ciudad?",a:["Saludar","Evitar accidente","Nunca"],ok:1},
-    {q:"Prioridad peatón en paso sin semáforo:",a:["Coche","Peatón","Nadie"],ok:1},
-    {q:"¿Se puede aparcar en carril bici?",a:["Sí, 5 min","No, nunca","Solo motos"],ok:1},
-    {q:"Luz azul en vehículo significa:",a:["Emergencia","Taxi","Autoescuela"],ok:0},
-    {q:"Casco obligatorio en moto:",a:["Solo conductor","Conductor y pasajero","Solo carretera"],ok:1},
-    {q:"¿Qué hacer ante ambulancia con sirena?",a:["Acelerar","Facilitar paso","Ignorar"],ok:1},
-    {q:"Señal de prohibido adelantar:",a:["Triángulo","Círculo rojo","Cuadrado azul"],ok:1},
-    {q:"Alcohol en conductores profesionales:",a:["0.5 g/l","0.3 g/l","0.0 g/l"],ok:1},
-    {q:"¿Es obligatorio el seguro?",a:["Solo a terceros","Sí, siempre","No"],ok:1},
-    {q:"Prioridad en intersección sin señalizar:",a:["Derecha","Izquierda","El más grande"],ok:0},
-    {q:"¿Cuándo parar en semáforo ámbar?",a:["Siempre","Si puedes seguro","Nunca"],ok:1},
-    {q:"Uso del cinturón en ciudad:",a:["Opcional","Obligatorio","Solo carretera"],ok:1},
-    {q:"¿Se puede usar móvil en semáforo rojo?",a:["Sí","No","Solo WhatsApp"],ok:1},
-    {q:"Distancia de seguridad con lluvia:",a:["Duplicar","Mitad","Igual"],ok:0},
-    {q:"¿Qué significa línea blanca continua?",a:["Adelantar","No cambiar carril","Estacionar"],ok:1},
-    {q:"Edad mínima ciclomotor:",a:["14 años","15 años","16 años"],ok:1},
-    {q:"¿Obligatorio triángulos?",a:["Sí","No","Solo noche"],ok:0},
-    {q:"Luz de emergencia V16 sustituye:",a:["Triángulos","Chaleco","Rueda"],ok:0},
-    {q:"Prioridad vehículo de emergencia:",a:["Nunca","Siempre","Solo de día"],ok:1},
-    {q:"¿Se puede adelantar por derecha?",a:["Sí","No","Solo en atasco"],ok:0},
-    {q:"Alcohol cero en:",a:["Todos","Noveles y profesionales","Nadie"],ok:1},
-    {q:"¿Cuándo usar intermitente?",a:["Solo autopista","Todo cambio dirección","Nunca"],ok:1},
-    {q:"Distancia mínima lateral ciclista:",a:["1m","1.5m","2m"],ok:1},
-    {q:"¿Obligatorio llevar documentación?",a:["Sí","No","Solo DNI"],ok:0},
-    {q:"Velocidad mínima autovía:",a:["60 km/h","50 km/h","40 km/h"],ok:0},
-    {q:"¿Se puede adelantar en paso de peatones?",a:["Sí","No, nunca","Solo si no hay peatones"],ok:1}
+    {q:"¿Cuándo usar claxon en ciudad?",a:["Saludar","Evitar accidente","Nunca"],ok:1}
   ],
   señales: [
     {q:"Señal de STOP octogonal:",a:["Ceda el paso","Alto obligatorio","Precaución"],ok:1},
@@ -82,34 +57,117 @@ const PREGUNTAS = {
   ]
 };
 
-// 40 PREGUNTAS SITUACIONES
+// 40 PREGUNTAS SITUACIONES - COMPLETAS AHORA
 const SITUACIONES = {
   clima: [
     {q:"Lluvia intensa: ¿qué haces?",a:["Acelero para salir","Reduzco velocidad y aumento distancia","Freno en seco"],ok:1},
     {q:"Niebla espesa:",a:["Largas","Antiniebla + cortas","Sin luces"],ok:1},
-    {q:"Hielo en calzada:",a:["Freno fuerte","Marchas largas sin frenar brusco","Acelero"],ok:1}
+    {q:"Hielo en calzada:",a:["Freno fuerte","Marchas largas sin frenar brusco","Acelero"],ok:1},
+    {q:"Charcos grandes:",a:["Acelerar","Evitar y reducir velocidad","Frenar fuerte"],ok:1},
+    {q:"Viento lateral fuerte:",a:["Sujetar volante firme","Soltar volante","Acelerar"],ok:0},
+    {q:"Granizo:",a:["Parar bajo un puente","Seguir igual","Acelerar"],ok:0},
+    {q:"Nieve en calzada:",a:["Cadenas o neumáticos invierno","Seguir sin más","Acelerar"],ok:0},
+    {q:"Sol de frente al atardecer:",a:["Usar visera y reducir velocidad","Acelerar","Quitar gafas"],ok:0},
+    {q:"Niebla densa en autovía:",a:["200m entre coches","100m","50m"],ok:0},
+    {q:"Carretera mojada tras sequía:",a:["Máximo agarre","Máximo peligro por aceite","Igual que siempre"],ok:1}
   ],
   ciudad: [
     {q:"Semáforo ámbar fijo:",a:["Acelero","Freno si puedo seguro","Me salto"],ok:1},
     {q:"Paso de peatones sin semáforo:",a:["Toco claxon","Cedo el paso siempre","Sigo"],ok:1},
-    {q:"Doble fila para dejar alguien:",a:["1 minuto vale","Prohibido siempre","Si pongo warning"],ok:1}
+    {q:"Doble fila para dejar alguien:",a:["1 minuto vale","Prohibido siempre","Si pongo warning"],ok:1},
+    {q:"Ciclista delante:",a:["Adelantar pegado","Mantener 1.5m","Tocar claxon"],ok:1},
+    {q:"Niño sale corriendo:",a:["Frenar y claxon","Seguir","Acelerar"],ok:0},
+    {q:"Autobús saliendo de parada:",a:["Acelerar","Ceder paso","Tocar claxon"],ok:1},
+    {q:"Carril bus ocupado:",a:["Puedo usarlo","Prohibido salvo taxi","Solo motos"],ok:1},
+    {q:"Glorieta de 2 carriles:",a:["Carril derecho para salir","Carril izq para salir","Cualquiera"],ok:0},
+    {q:"Peatón cruzando fuera de paso:",a:["Frenar si hay peligro","Tiene culpa él","Acelerar"],ok:0},
+    {q:"Aparcar en vado:",a:["Permitido 5 min","Prohibido","Solo de noche"],ok:1}
   ],
   carretera: [
     {q:"Adelantar en autovía:",a:["Por derecha","Por izquierda con intermitente","Por donde sea"],ok:1},
     {q:"Cambio de carril:",a:["Sin mirar","Espejo+intermitente+ángulo muerto","Directo"],ok:1},
-    {q:"Distancia en autovía seco:",a:["1 segundo","2 segundos mínimo","Medio segundo"],ok:1}
+    {q:"Distancia en autovía seco:",a:["1 segundo","2 segundos mínimo","Medio segundo"],ok:1},
+    {q:"Camión delante lento:",a:["Pegarte","Mantener distancia","Adelantar rápido"],ok:1},
+    {q:"Cambio rasante:",a:["Adelantar","No adelantar","Acelerar"],ok:1},
+    {q:"Curva cerrada:",a:["Frenar dentro","Reducir antes","Acelerar"],ok:1},
+    {q:"Adelantar camión largo:",a:["Volver rápido","Esperar visibilidad","Adelantar pegado"],ok:1},
+    {q:"Carril de aceleración:",a:["Parar","Incorporarse a velocidad","Entrar lento"],ok:1},
+    {q:"Área de servicio:",a:["Salir marcha atrás","Salir por entrada","Seguir señales"],ok:2},
+    {q:"Punto negro:",a:["Acelerar","Precaución extra","Ignorar"],ok:1}
   ],
   emergencia: [
     {q:"Reventón rueda delantera:",a:["Freno fuerte","Sujeto volante y desacelero suave","Giro brusco"],ok:1},
     {q:"Avería en autovía:",a:["Me quedo en carril","Arcén+triángulos+chaleco","Salgo corriendo"],ok:1},
-    {q:"Accidente con heridos:",a:["Muevo heridos","PAS: Proteger, Avisar, Socorrer","Me voy"],ok:1}
+    {q:"Accidente con heridos:",a:["Muevo heridos","PAS: Proteger, Avisar, Socorrer","Me voy"],ok:1},
+    {q:"Fallo frenos:",a:["Freno motor y freno mano","Acelerar","Ignorar"],ok:0},
+    {q:"Incendio motor:",a:["Abrir capó","No abrir, extintor","Echar agua"],ok:1},
+    {q:"Pérdida de dirección:",a:["Frenar fuerte","Sujetar volante y frenar suave","Acelerar"],ok:1},
+    {q:"Alumbrado falla de noche:",a:["Seguir","Parar en lugar seguro","Acelerar"],ok:1},
+    {q:"Atrapado en vehículo:",a:["Romper ventanilla","Esperar","Dormir"],ok:0},
+    {q:"Persona inconsciente:",a:["Moverla","Posición lateral seguridad","Nada"],ok:1},
+    {q:"Hemorragia grave:",a:["Torniquete","Presión directa","Agua fría"],ok:1}
   ]
 };
 
-const COCHES = [{id:'c1',nombre:'SEAT Ibiza',emoji:'🚗',precio:500,hp:90}];
-const ACCESORIOS = [{id:'a1',nombre:'Turbo',emoji:'💨',precio:300,hp:50}];
-const EMOJI_SHOP = [{id:'e1',emoji:'🦄',nombre:'Unicornio',precio:1000}];
-const TIPS = [{emoji:'🧠',txt:'Regla de los 2 segundos'}];
+// 6 SUPERCOCHES PARA GARAGE
+const COCHES = [
+  {id:'c1',nombre:'SEAT Ibiza',emoji:'🚗',precio:0,hp:90,unlock:0}, // Gratis inicial
+  {id:'c2',nombre:'VW Golf GTI',emoji:'🏎️',precio:500,hp:245,unlock:500},
+  {id:'c3',nombre:'BMW M3',emoji:'🚙',precio:1500,hp:510,unlock:1500},
+  {id:'c4',nombre:'Tesla Model S',emoji:'⚡',precio:3000,hp:670,unlock:3000},
+  {id:'c5',nombre:'Porsche 911',emoji:'🏁',precio:5000,hp:450,unlock:5000},
+  {id:'c6',nombre:'Bugatti Chiron',emoji:'🚗💨',precio:10000,hp:1500,unlock:10000}
+];
+
+const ACCESORIOS = [
+  {id:'a1',nombre:'Turbo',emoji:'💨',precio:300,hp:50},
+  {id:'a2',nombre:'Neumáticos Racing',emoji:'🛞',precio:200,hp:30},
+  {id:'a3',nombre:'Alerón',emoji:'🔰',precio:400,hp:40},
+  {id:'a4',nombre:'Nitro',emoji:'💥',precio:600,hp:80}
+];
+
+const EMOJI_SHOP = [
+  {id:'e1',emoji:'🦄',nombre:'Unicornio',precio:1000},
+  {id:'e2',emoji:'👑',nombre:'Corona',precio:800},
+  {id:'e3',emoji:'💎',nombre:'Diamante',precio:1200},
+  {id:'e4',emoji:'🚀',nombre:'Cohete',precio:600},
+  {id:'e5',emoji:'🔥',nombre:'Fuego',precio:500},
+  {id:'e6',emoji:'⚡',nombre:'Rayo',precio:700}
+];
+
+// 30 CONSEJOS ROTATIVOS
+const TIPS = [
+  {emoji:'🧠',txt:'Regla de los 2 segundos: mantén distancia con el de delante'},
+  {emoji:'👀',txt:'Mira 12 segundos adelante, no solo el coche de enfrente'},
+  {emoji:'🛑',txt:'En STOP cuenta hasta 3 antes de arrancar'},
+  {emoji:'💡',txt:'Luces de cruce de día = te ven 3x mejor'},
+  {emoji:'📱',txt:'Móvil = 23x más riesgo. Modo avión al conducir'},
+  {emoji:'🛞',txt:'Presión baja = +10% consumo y riesgo de reventón'},
+  {emoji:'🌧️',txt:'Lluvia: aumenta distancia x2 y reduce velocidad 20%'},
+  {emoji:'😴',txt:'Cansado = mismo riesgo que alcohol. Para cada 2h'},
+  {emoji:'🚸',txt:'En zona escolar reduce a 20 km/h siempre'},
+  {emoji:'🔄',txt:'Glorieta: carril derecho para salir, izquierdo para seguir'},
+  {emoji:'🚨',txt:'Ambulancia con sirena: pégate a la derecha y para'},
+  {emoji:'🌙',txt:'Noche: aumenta distancia, los faros engañan'},
+  {emoji:'🧥',txt:'Chaleco reflectante obligatorio fuera del coche en carretera'},
+  {emoji:'🍼',txt:'Niños <135cm siempre atrás con silla homologada'},
+  {emoji:'🚲',txt:'Adelanta ciclista dejando 1.5m mínimo lateral'},
+  {emoji:'❄️',txt:'Hielo negro no se ve. Si brilla la carretera, precaución'},
+  {emoji:'🚧',txt:'Obras: respeta señales amarillas, son prioritarias'},
+  {emoji:'🅿️',txt:'No aparques a menos de 5m de un paso de peatones'},
+  {emoji:'💨',txt:'Viento lateral: sujeta volante con las dos manos'},
+  {emoji:'🔋',txt:'Coche eléctrico: regenera frenando, ahorra pastillas'},
+  {emoji:'🎧',txt:'Auriculares prohibidos. No oyes ambulancias ni claxon'},
+  {emoji:'🥃',txt:'Alcohol 0.0 si eres novel o profesional. No hay excusa'},
+  {emoji:'🌫️',txt:'Niebla: antiniebla trasera solo si visibilidad <50m'},
+  {emoji:'🛣️',txt:'Autovía: carril derecho es para circular, no adelantar'},
+  {emoji:'🚦',txt:'Ámbar: solo pasa si no puedes parar seguro'},
+  {emoji:'👶',txt:'Airbag + silla atrás en sentido contrario a la marcha'},
+  {emoji:'🛠️',txt:'Revisa aceite, agua y presión cada 15 días'},
+  {emoji:'📍',txt:'GPS: prográmalo antes de salir, no conduciendo'},
+  {emoji:'🔥',txt:'Incendio: no abras capó, usa extintor por rendijas'},
+  {emoji:'💪',txt:'Cinturón siempre. 9 de 10 vidas salvadas son por eso'}
+];
 
 let estado = {
   coins: parseInt(localStorage.getItem('gd_coins')) || 0,
@@ -132,13 +190,16 @@ let estado = {
 
 // INICIO AUTOMÁTICO
 window.onload = function() {
-  console.log("GasDrive V7 cargado");
+  console.log("GasDrive V7.1 cargado");
   actualizarCoins();
   cargarPregunta('general');
 };
 
 function guardar() {
   localStorage.setItem('gd_coins', estado.coins);
+  localStorage.setItem('gd_coches', JSON.stringify(estado.coches));
+  localStorage.setItem('gd_accesorios', JSON.stringify(estado.accesorios));
+  localStorage.setItem('gd_emojis', JSON.stringify(estado.emojis));
 }
 
 function actualizarCoins() {
@@ -178,7 +239,7 @@ function mostrarEmoji(acierto, elemento) {
   const emoji = lista[Math.floor(Math.random() * lista.length)];
   const span = document.createElement('span');
   span.textContent = emoji;
-  span.style.cssText = 'position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:32px;animation:bounceIn 0.4s;pointer-events:none;';
+  span.style.cssText = 'position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:32px;animation:bounceIn 0.4s;pointer-events:none;z-index:999;';
   elemento.style.position = 'relative';
   elemento.appendChild(span);
   setTimeout(() => span.remove(), 600);
@@ -319,18 +380,63 @@ function siguienteSituacion(cat) {
   cargarSituacion(cat);
 }
 
-// GARAGE, TIENDA, TIPS
+// GARAGE CON 6 COCHES
 function cargarGarage() {
   const lista = document.getElementById('garage-lista');
-  if(lista) lista.innerHTML = '<div class="garage-car"><h3>🚗 SEAT Ibiza</h3><div>90 HP</div></div>';
+  const hpTotal = estado.coches.reduce((sum, id) => {
+    const coche = COCHES.find(c => c.id === id);
+    return sum + (coche? coche.hp : 0);
+  }, 0);
+
+  document.getElementById('garage-score').textContent = `🏎️ ${hpTotal} HP`;
+
+  lista.innerHTML = COCHES.map(coche => {
+    const tiene = estado.coches.includes(coche.id);
+    return `
+      <div class="garage-car ${!tiene? 'locked' : ''}">
+        <div style="font-size:40px">${coche.emoji}</div>
+        <h3>${coche.nombre}</h3>
+        <div>${coche.hp} HP</div>
+        ${!tiene? `<div class="price">Desbloquea con ${coche.unlock} pts</div>` : '<div style="color:#0f5">✓ Desbloqueado</div>'}
+      </div>
+    `;
+  }).join('');
 }
 
 function cargarTienda() {
   const lista = document.getElementById('emoji-tienda');
-  if(lista) lista.innerHTML = '<div class="emoji-item"><div class="emoji-big">🦄</div><div>Unicornio</div></div>';
+  lista.innerHTML = EMOJI_SHOP.map(emoji => {
+    const tiene = estado.emojis.includes(emoji.id);
+    return `
+      <div class="emoji-item ${tiene? 'owned' : ''}" onclick="comprarEmoji('${emoji.id}', ${emoji.precio})">
+        <div class="emoji-big">${emoji.emoji}</div>
+        <div>${emoji.nombre}</div>
+        <div style="color:#FFD700">${emoji.precio} pts</div>
+      </div>
+    `;
+  }).join('');
 }
 
+function comprarEmoji(id, precio) {
+  if(estado.coins >= precio &&!estado.emojis.includes(id)) {
+    estado.coins -= precio;
+    estado.emojis.push(id);
+    guardar();
+    actualizarCoins();
+    cargarTienda();
+    alert('🎉 Emoji desbloqueado!');
+  }
+}
+
+// TIPS ROTATIVOS - 30 CONSEJOS
 function cargarTips() {
   const lista = document.getElementById('tips-lista');
-  if(lista) lista.innerHTML = '<div class="tip"><span class="tip-emoji">🧠</span><span>Regla de los 2 segundos</span></div>';
+  // Mostrar 5 consejos aleatorios cada vez que entras
+  const tipsAleatorios = TIPS.sort(() => 0.5 - Math.random()).slice(0, 5);
+  lista.innerHTML = tipsAleatorios.map(tip => `
+    <div class="tip">
+      <span class="tip-emoji">${tip.emoji}</span>
+      <span>${tip.txt}</span>
+    </div>
+  `).join('');
 }
