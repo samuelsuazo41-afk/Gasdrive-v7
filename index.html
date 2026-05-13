@@ -6,13 +6,13 @@
   <title>GasDrive V7</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { 
+    body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0a0a0a; 
-      color: #fff; 
+      background: #0a0a0a;
+      color: #fff;
       overflow-x: hidden;
     }
-    .header {
+   .header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       padding: 20px;
       text-align: center;
@@ -20,9 +20,9 @@
       top: 0;
       z-index: 100;
     }
-    .header h1 { font-size: 28px; margin-bottom: 5px; }
-    .header p { font-size: 12px; opacity: 0.9; }
-    .coins {
+   .header h1 { font-size: 28px; margin-bottom: 5px; }
+   .header p { font-size: 12px; opacity: 0.9; }
+   .coins {
       position: absolute;
       top: 20px;
       right: 20px;
@@ -32,8 +32,8 @@
       border-radius: 20px;
       font-weight: bold;
     }
-    
-    .nav {
+
+   .nav {
       display: flex;
       background: #1a1a1a;
       position: fixed;
@@ -41,7 +41,7 @@
       width: 100%;
       z-index: 100;
     }
-    .nav-btn {
+   .nav-btn {
       flex: 1;
       padding: 12px 8px;
       background: none;
@@ -50,19 +50,19 @@
       font-size: 11px;
       text-align: center;
     }
-    .nav-btn.active { color: #667eea; }
-    
-    .tab-content { display: none; padding: 20px; padding-bottom: 80px; }
-    .tab-content.active { display: block; }
-    
-    .sub-tabs {
+   .nav-btn.active { color: #667eea; }
+
+   .tab-content { display: none; padding: 20px; padding-bottom: 80px; }
+   .tab-content.active { display: block; }
+
+   .sub-tabs {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       margin-bottom: 20px;
       padding-bottom: 10px;
     }
-    .sub-tab-btn {
+   .sub-tab-btn {
       padding: 10px 16px;
       background: #1a1a1a;
       border: 1px solid #333;
@@ -71,25 +71,25 @@
       white-space: nowrap;
       font-size: 14px;
     }
-    .sub-tab-btn.active {
+   .sub-tab-btn.active {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       border-color: #667eea;
     }
-    .sub-content { display: none; }
-    .sub-content.active { display: block; }
-    
-    .pregunta {
+   .sub-content { display: none; }
+   .sub-content.active { display: block; }
+
+   .pregunta {
       font-size: 18px;
       margin: 20px 0;
       line-height: 1.4;
     }
-    .opciones {
+   .opciones {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin: 20px 0;
     }
-    .opcion {
+   .opcion {
       background: #1a1a1a;
       border: 2px solid #333;
       border-radius: 12px;
@@ -97,18 +97,18 @@
       font-size: 16px;
       transition: all 0.2s;
     }
-    .opcion.correcta {
+   .opcion.correcta {
       background: #0f5;
       border-color: #0f5;
       color: #000;
     }
-    .opcion.incorrecta {
+   .opcion.incorrecta {
       background: #f33;
       border-color: #f33;
     }
-    .opcion.bloqueada { pointer-events: none; opacity: 0.7; }
-    
-    .feedback {
+   .opcion.bloqueada { pointer-events: none; opacity: 0.7; }
+
+   .feedback {
       padding: 16px;
       border-radius: 12px;
       margin: 16px 0;
@@ -116,10 +116,10 @@
       text-align: center;
       display: none;
     }
-    .feedback.acierto { background: #0f5; color: #000; display: block; }
-    .feedback.fallo { background: #f33; display: block; }
-    
-    .btn-siguiente {
+   .feedback.acierto { background: #0f5; color: #000; display: block; }
+   .feedback.fallo { background: #f33; display: block; }
+
+   .btn-siguiente {
       width: 100%;
       padding: 16px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -130,12 +130,12 @@
       font-weight: bold;
       margin-top: 20px;
     }
-    .btn-siguiente:disabled {
+   .btn-siguiente:disabled {
       opacity: 0.3;
       pointer-events: none;
     }
-    
-    .progress-bar {
+
+   .progress-bar {
       width: 100%;
       height: 6px;
       background: #333;
@@ -143,42 +143,42 @@
       overflow: hidden;
       margin: 12px 0;
     }
-    .progress-fill {
+   .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #667eea, #764ba2);
       transition: width 0.3s;
     }
-    
-    .garage-grid {
+
+   .garage-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
-    .garage-car {
+   .garage-car {
       background: #1a1a1a;
       border: 2px solid #333;
       border-radius: 12px;
       padding: 16px;
       text-align: center;
     }
-    .garage-car.locked { opacity: 0.4; }
-    
-    .emoji-grid {
+   .garage-car.locked { opacity: 0.4; }
+
+   .emoji-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
-    .emoji-item {
+   .emoji-item {
       background: #1a1a1a;
       border: 2px solid #333;
       border-radius: 12px;
       padding: 16px;
       text-align: center;
     }
-    .emoji-item.owned { border-color: #0f5; }
-    .emoji-big { font-size: 40px; margin-bottom: 8px; }
-    
-    .tip {
+   .emoji-item.owned { border-color: #0f5; }
+   .emoji-big { font-size: 40px; margin-bottom: 8px; }
+
+   .tip {
       background: #1a1a1a;
       border-left: 4px solid #667eea;
       padding: 16px;
@@ -188,7 +188,7 @@
       gap: 12px;
       align-items: center;
     }
-    .tip-emoji { font-size: 32px; }
+   .tip-emoji { font-size: 32px; }
   </style>
 </head>
 <body>
@@ -270,4 +270,86 @@
       <div id="sit-clima-pregunta" class="pregunta"></div>
       <div id="sit-clima-opciones" class="opciones"></div>
       <div id="sit-clima-feedback" class="feedback"></div>
-      <button id="btn-sig-sit-clima" onclick="
+      <button id="btn-sig-sit-clima" onclick="siguienteSituacion('clima')" disabled class="btn-siguiente">SIGUIENTE</button>
+    </div>
+
+    <div id="sit-ciudad" class="sub-content">
+      <h3>🏙️ CONDUCCIÓN URBANA</h3>
+      <div>Resueltas: <span id="sit-ciudad-aciertos">0</span>/3</div>
+      <div>Score: <span id="sit-ciudad-score">0</span></div>
+      <div class="progress-bar"><div id="sit-ciudad-progress" class="progress-fill"></div></div>
+      <div id="sit-ciudad-pregunta" class="pregunta"></div>
+      <div id="sit-ciudad-opciones" class="opciones"></div>
+      <div id="sit-ciudad-feedback" class="feedback"></div>
+      <button id="btn-sig-sit-ciudad" onclick="siguienteSituacion('ciudad')" disabled class="btn-siguiente">SIGUIENTE</button>
+    </div>
+
+    <div id="sit-carretera" class="sub-content">
+      <h3>🛣️ CARRETERA</h3>
+      <div>Resueltas: <span id="sit-carretera-aciertos">0</span>/3</div>
+      <div>Score: <span id="sit-carretera-score">0</span></div>
+      <div class="progress-bar"><div id="sit-carretera-progress" class="progress-fill"></div></div>
+      <div id="sit-carretera-pregunta" class="pregunta"></div>
+      <div id="sit-carretera-opciones" class="opciones"></div>
+      <div id="sit-carretera-feedback" class="feedback"></div>
+      <button id="btn-sig-sit-carretera" onclick="siguienteSituacion('carretera')" disabled class="btn-siguiente">SIGUIENTE</button>
+    </div>
+
+    <div id="sit-emergencia" class="sub-content">
+      <h3>🚨 EMERGENCIAS</h3>
+      <div>Resueltas: <span id="sit-emergencia-aciertos">0</span>/3</div>
+      <div>Score: <span id="sit-emergencia-score">0</span></div>
+      <div class="progress-bar"><div id="sit-emergencia-progress" class="progress-fill"></div></div>
+      <div id="sit-emergencia-pregunta" class="pregunta"></div>
+      <div id="sit-emergencia-opciones" class="opciones"></div>
+      <div id="sit-emergencia-feedback" class="feedback"></div>
+      <button id="btn-sig-sit-emergencia" onclick="siguienteSituacion('emergencia')" disabled class="btn-siguiente">SIGUIENTE</button>
+    </div>
+  </div>
+
+  <!-- TAB GARAGE -->
+  <div id="tab-garage" class="tab-content">
+    <h3>🏎️ MI GARAGE</h3>
+    <div id="garage-score" style="margin: 16px 0; font-size: 18px;">🏎️ 0 HP</div>
+    <div id="garage-lista" class="garage-grid"></div>
+  </div>
+
+  <!-- TAB TIENDA -->
+  <div id="tab-tienda" class="tab-content">
+    <h3>🛒 TIENDA</h3>
+    <div id="emoji-tienda" class="emoji-grid"></div>
+  </div>
+
+  <!-- TAB TIPS -->
+  <div id="tab-tips" class="tab-content">
+    <h3>💡 CONSEJOS DGT</h3>
+    <div id="tips-lista"></div>
+  </div>
+
+  <!-- NAV BOTTOM -->
+  <div class="nav">
+    <button class="nav-btn active" onclick="cambiarTab('test')">
+      <div>📝</div>
+      <div>TEST</div>
+    </button>
+    <button class="nav-btn" onclick="cambiarTab('situaciones')">
+      <div>🚦</div>
+      <div>CASOS</div>
+    </button>
+    <button class="nav-btn" onclick="cambiarTab('garage')">
+      <div>🏎️</div>
+      <div>GARAGE</div>
+    </button>
+    <button class="nav-btn" onclick="cambiarTab('tienda')">
+      <div>🛒</div>
+      <div>TIENDA</div>
+    </button>
+    <button class="nav-btn" onclick="cambiarTab('tips')">
+      <div>💡</div>
+      <div>TIPS</div>
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
