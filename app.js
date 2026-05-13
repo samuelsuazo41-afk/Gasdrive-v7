@@ -210,7 +210,7 @@ function actualizarCoins() {
 // NAVEGACIÓN
 function cambiarTab(tab) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   event.target.classList.add('active');
 
@@ -432,10 +432,4 @@ function comprarEmoji(id, precio) {
 function cargarTips() {
   const lista = document.getElementById('tips-lista');
   const tipsAleatorios = TIPS.sort(() => 0.5 - Math.random()).slice(0, 5);
-  lista.innerHTML = tipsAleatorios.map(tip => `
-    <div class="tip">
-      <span class="tip-emoji">${tip.emoji}</span>
-      <span>${tip.txt}</span>
-    </div>
-  `).join('');
-}
+  lista.inner
