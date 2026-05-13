@@ -1,11 +1,11 @@
-// GASDRIVE V7 - 180 PREGUNTAS DGT 2026
+// GASDRIVE V7.1 - 180 PREGUNTAS DGT 2026
 const VERSION = "7.1";
 
 // COMBO DOPAMINA
 const EMOJIS_ACIERTO = ['🚀','💎','👑','🔥','💯','⚡','🏆','🦄','🤑','✅','💪','😎','🎯','💥','🌟','🎉'];
 const EMOJIS_FALLO = ['❌','💀','😭','⛔','💔','😵','🤦','🚫','💩','🤡','💥','😤'];
 
-// 140 PREGUNTAS TEST DGT - MANTEN TUS 140 AQUÍ
+// 40 PREGUNTAS TEST DGT
 const PREGUNTAS = {
   general: [
     {q:"¿Velocidad máxima en zona urbana?",a:["30 km/h","50 km/h","60 km/h"],ok:1},
@@ -57,7 +57,7 @@ const PREGUNTAS = {
   ]
 };
 
-// 40 PREGUNTAS SITUACIONES - COMPLETAS AHORA
+// 40 PREGUNTAS SITUACIONES REALES
 const SITUACIONES = {
   clima: [
     {q:"Lluvia intensa: ¿qué haces?",a:["Acelero para salir","Reduzco velocidad y aumento distancia","Freno en seco"],ok:1},
@@ -111,7 +111,7 @@ const SITUACIONES = {
 
 // 6 SUPERCOCHES PARA GARAGE
 const COCHES = [
-  {id:'c1',nombre:'SEAT Ibiza',emoji:'🚗',precio:0,hp:90,unlock:0}, // Gratis inicial
+  {id:'c1',nombre:'SEAT Ibiza',emoji:'🚗',precio:0,hp:90,unlock:0},
   {id:'c2',nombre:'VW Golf GTI',emoji:'🏎️',precio:500,hp:245,unlock:500},
   {id:'c3',nombre:'BMW M3',emoji:'🚙',precio:1500,hp:510,unlock:1500},
   {id:'c4',nombre:'Tesla Model S',emoji:'⚡',precio:3000,hp:670,unlock:3000},
@@ -431,7 +431,6 @@ function comprarEmoji(id, precio) {
 // TIPS ROTATIVOS - 30 CONSEJOS
 function cargarTips() {
   const lista = document.getElementById('tips-lista');
-  // Mostrar 5 consejos aleatorios cada vez que entras
   const tipsAleatorios = TIPS.sort(() => 0.5 - Math.random()).slice(0, 5);
   lista.innerHTML = tipsAleatorios.map(tip => `
     <div class="tip">
