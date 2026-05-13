@@ -17,10 +17,10 @@
   <!-- TEST -->
   <div id="tab-test" class="tab-content active">
     <div class="sub-tabs">
-      <button class="sub-tab-btn active" onclick="cambiarSubTab('test','general')">📝 General</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('test','señales')">🚸 Señales</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('test','normas')">📋 Normas</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('test','mecanica')">🔧 Mecánica</button>
+      <button class="sub-tab-btn active" onclick="cambiarSubTab('test','general',this)">📝 General</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('test','señales',this)">🚸 Señales</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('test','normas',this)">📋 Normas</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('test','mecanica',this)">🔧 Mecánica</button>
     </div>
     
     <div id="test-general" class="sub-content active">
@@ -91,10 +91,10 @@
   <!-- SITUACIONES -->
   <div id="tab-situaciones" class="tab-content">
     <div class="sub-tabs">
-      <button class="sub-tab-btn active" onclick="cambiarSubTab('sit','clima')">🌧️ Clima</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','ciudad')">🏙️ Ciudad</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','carretera')">🛣️ Carretera</button>
-      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','emergencia')">🚨 Emergencia</button>
+      <button class="sub-tab-btn active" onclick="cambiarSubTab('sit','clima',this)">🌧️ Clima</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','ciudad',this)">🏙️ Ciudad</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','carretera',this)">🛣️ Carretera</button>
+      <button class="sub-tab-btn" onclick="cambiarSubTab('sit','emergencia',this)">🚨 Emergencia</button>
     </div>
     <div id="sit-clima" class="sub-content active">
       <div class="card">
@@ -183,19 +183,19 @@
 
   <!-- MENÚ INFERIOR -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="cambiarTab('test')">
+    <button class="tab-btn active" onclick="cambiarTab('test',this)">
       <span class="emoji">📝</span>TEST
     </button>
-    <button class="tab-btn" onclick="cambiarTab('situaciones')">
+    <button class="tab-btn" onclick="cambiarTab('situaciones',this)">
       <span class="emoji">🚗</span>CASOS
     </button>
-    <button class="tab-btn" onclick="cambiarTab('garage')">
+    <button class="tab-btn" onclick="cambiarTab('garage',this)">
       <span class="emoji">🏁</span>GARAGE
     </button>
-    <button class="tab-btn" onclick="cambiarTab('tienda')">
+    <button class="tab-btn" onclick="cambiarTab('tienda',this)">
       <span class="emoji">🛒</span>TIENDA
     </button>
-    <button class="tab-btn" onclick="cambiarTab('tips')">
+    <button class="tab-btn" onclick="cambiarTab('tips',this)">
       <span class="emoji">💡</span>TIPS
     </button>
   </div>
